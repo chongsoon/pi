@@ -292,7 +292,7 @@ jobs:
             diff -u <(printf '%s\n' "${expected_asset_names}") <(printf '%s\n' "${actual_asset_names}") || true
             exit 1
           fi
-          
+
   publish-github-release:
     runs-on: ubuntu-latest
     needs:
@@ -326,8 +326,6 @@ jobs:
     needs:
       - build
       - stage-github-release
-      - publish-npm
-      - announce-pi-dev-release
       - publish-github-release
     if: ${{ always() && needs.stage-github-release.result != 'skipped' && (needs.stage-github-release.result != 'success' || needs.publish-npm.result != 'success' || needs.announce-pi-dev-release.result != 'success' || needs.publish-github-release.result != 'success') }}
     permissions:
