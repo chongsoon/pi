@@ -60,7 +60,7 @@ jobs:
           mkdir -p release-assets
           ./scripts/create-source-archive.sh \
             --version "${VERSION}" \
-            --ref HEAD \
+            --ref "${{ env.SOURCE_REF }}" \
             --out "release-assets/pi-${VERSION}-source.tar.gz"
 
       - name: Build binaries from source archive
